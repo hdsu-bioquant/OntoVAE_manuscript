@@ -1,9 +1,0 @@
-{"max_epochs": 300, 
- "learning_rate": 1e-4,
- "optimizer": "AdamW",
- "batch_size": 128,
- "neuronnum": 3,
- "onto": "decoder",
- "kl_coeff": 1e-4, 
- "dropout": 0.2,
- "z_dropout": 0.5}
