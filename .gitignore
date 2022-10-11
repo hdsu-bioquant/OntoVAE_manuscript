@@ -1,13 +1,84 @@
-/03_manuscript_analysis/01_pathway_activities/figures
-/03_manuscript_analysis/01_pathway_activities/results
-/03_manuscript_analysis/02_gene_knockout/figures
-/03_manuscript_analysis/02_gene_knockout/results
-/03_manuscript_analysis/03_LGMD/figures
-/03_manuscript_analysis/03_LGMD/results
-/03_manuscript_analysis/04_IFN_response/figures
-/03_manuscript_analysis/04_IFN_response/results
-/data
-/datasets
-/models
+# ontology files
 /ontologies
+/ontologies/GO/go-basic.obo
+/ontologies/GO/ensembl_goterm_mapping.txt
+/ontologies/GO/hgnc_goterm_mapping.txt
+/ontologies/HPO/hp.obo
+/ontologies/HPO/gene_term_mapping.txt
+
+# datasets
+/datasets
+/datasets/recount3_GTEx/recount3_GTEx_annot.csv
+/datasets/recount3_GTEx/recount3_GTEx_ensembl_log_tpm.csv
+/datasets/recount3_GTEx/recount3_GTEx_symbol_log_tpm.csv
+/datasets/LGMD/GSE202745_exp3105-x2-switched-RawCountsTable.txt
+/datasets/Kang_PBMC/Kang_PBMC_control_annot.csv
+/datasets/Kang_PBMC/Kang_PBMC_annot.csv
+/datasets/Kang_PBMC/Kang_PBMC_control_expr.csv
+/datasets/Kang_PBMC/Kang_PBMC_expr.csv
+
+# ontobj
+/ontobj
+/ontobj/GO_ensembl_ontobj.pickle
+/ontobj/HPO_ontobj.pickle
+/ontobj/GO_symbol_ontobj.pickle
+
+# trained models
+/models
+/models/GTEx_GO/best_model_neuronnum1_1.pt
+/models/GTEx_GO/best_model_neuronnum1_2.pt
+/models/GTEx_GO/best_model_neuronnum2_1.pt
+/models/GTEx_GO/best_model_neuronnum2_2.pt
+/models/GTEx_GO/best_model_neuronnum3_1.pt
+/models/GTEx_GO/best_model_neuronnum3_2.pt
+/models/GTEx_HPO/best_model.pt
+/models/GTEx_HPO/best_model_FHL1_link_removed.pt
+/models/GTEx_HPO/best_model_SGCA_link_removed.pt
+/models/GTEx_HPO/best_model_TMEM43_link_removed.pt
+/models/GTEx_HPO/best_model_LMNA_link_removed.pt
+/models/GTEx_HPO/best_model_EMD_link_removed.pt
+/models/GTEx_HPO/best_model_DAG1_link_removed.pt
+/models/GTEx_HPO/best_model_SYNE1_link_removed.pt
+/models/GTEx_HPO/best_model_ACTA1_link_removed.pt
+/models/GTEx_HPO/best_model_DPM3_link_removed.pt
+/models/GTEx_HPO/best_model_HNRNPDL_link_removed.pt
+/models/PBMC_GO/best_model.pt
+
+# pathway activities
+/activities
+/activities/recount3_GTEx_GO_activities_neuronnum1_1.npy
+/activities/recount3_GTEx_GO_activities_neuronnum1_2.npy
+/activities/recount3_GTEx_GO_activities_neuronnum2_1.npy
+/activities/recount3_GTEx_GO_activities_neuronnum2_2.npy
+/activities/recount3_GTEx_GO_activities_neuronnum3_1.npy
+/activities/recount3_GTEx_GO_activities_neuronnum3_2.npy
+/activities/GTEx_muscle_LGMD_activities.npy 
+/activities/PBMC_control_CD4T_IFN_activities.npy
+
+# analysis - pathway activities
+
+/03_analysis/01_pathway_activities/results
+/03_analysis/01_pathway_activities/results/GO_activity_correlations_based_on_neuronnum.json
+/03_analysis/01_pathway_activities/figures
+
+# analysis - gene knockout
+
+/03_analysis/02_gene_knockout/figures
+/03_analysis/02_gene_knockout/results
+/03_analysis/02_gene_knockout/results/activities 
+/03_analysis/02_gene_knockout/results/reconstructions
+/03_analysis/02_gene_knockout/results/differential_analysis
+/03_analysis/02_gene_knockout/results/ORA
+
+# analysis - LGMD
+
+/03_analysis/03_LGMD/figures
+/03_analysis/03_LGMD/results
+/03_analysis/03_LGMD/results/link_removal
+
+# analysis - IFN signaling
+
+/03_analysis/04_IFN_response/figures
+/03_analysis/04_IFN_response/results
+
 
