@@ -4,7 +4,6 @@ from onto_vae.ontobj import *
 project_dir = os.getcwd()
 
 
-
 # import the gene lists
 
 res = pd.read_csv(project_dir + '/03_analysis/04_IFN_response/results/Genes_upregulating_IFN_activity_Wilcoxon_results.csv')
@@ -27,7 +26,7 @@ genes = genes[genes.iloc[:,0].isin(ol_genes)]
 idx = np.array([genes[genes.iloc[:,0] == o].index.to_numpy()[0] for o in ol_genes])
 
 # load original expression data of control cells
-expr = np.load(project_dir + '/datasets/VEGA_PBMC/data/vega_pbmc_control_GO_trimmed_expr.npy')
+expr = go.extract_dataset('Kang_PBMC_control')
 
 # subset expr data
 expr_sub = expr[:,idx]
@@ -40,13 +39,9 @@ expr_data.columns = ['gene', 'log_tpm']
 
 
 # make boxplots
-flierprops = dict(marker='o', 
-                  markersize=3,
-                  linestyle='none')
-
 fig, ax = plt.subplots(figsize=(4,8))
 g = sns.scatterplot(x='log_tpm', y='gene', data=expr_data, color='darkgrey', s=6, rasterized=True)
-g = sns.boxplot(x='log_tpm', y='gene', data=expr_data, color='skyblue', flierprops=flierprops)
+g = sns.boxplot(x='log_tpm', y='gene', data=expr_data, color='skyblue', showfliers=False)
 g.figure.savefig(project_dir + '/03_analysis/04_IFN_response/figures/09-01_expression_of_overlapping_genes.pdf')
 plt.clf()
 
