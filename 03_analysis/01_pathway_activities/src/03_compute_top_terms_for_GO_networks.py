@@ -68,7 +68,8 @@ results.to_csv(project_dir + '/03_analysis/01_pathway_activities/results/GTEx_ti
 with pd.ExcelWriter(project_dir + '/03_analysis/01_pathway_activities/results/GTEx_tissues_top_GO_terms.xlsx') as writer:  
     for tissue in tissues:
         res_sub = results[results.tissue == tissue]
-        res_sub = res_sub.sort_values(['rank', 'med_stat'], ascending=(True,False))
-        res_sub.to_excel(writer, sheet_name=tissue)
+        res_sub = res_sub.sort_values(['rank', 'hits', 'med_stat'], ascending = (True,False,False))
+        res_sub = res_sub.drop(['ind'], axis=1)
+        res_sub.to_excel(writer, sheet_name=tissue, index=False)
 
 
