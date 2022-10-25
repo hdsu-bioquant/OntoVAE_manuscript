@@ -36,7 +36,6 @@ muscle_idx = sample_annot[sample_annot.tissue == 'Muscle'].index.to_numpy()
 
 # extract dataset
 data = go.extract_data('recount3_GTEx')
-data = go.data['1000_30']['recount3_GTEx']
 
 # subset to muscle samples
 muscle_data = data[muscle_idx,:]
@@ -46,7 +45,6 @@ go.add_dataset(dataset=data,
                 description='recount3_GTEx_muscle',
                 top_thresh=1000,
                 bottom_thresh=10)
-go.data['1000_30']['recount3_GTEx_muscle'] = muscle_data
 
 # genes that the knockout will be performed on
 ko_genes = ['ENSG00000198947', 'ENSG00000061936', 'ENSG00000178741'] # DMD, SFSWAP, COX5A
