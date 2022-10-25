@@ -33,38 +33,46 @@ onto_genes = go.extract_genes(top_thresh=1000,
 
 
 
-# perform systematic stimulation
-stim_act = []
-
-for g in onto_genes:
-
-    act = go_model.perturbation(ontobj=go,
-                                 dataset='Kang_PBMC_control',
-                                 genes=[g],
-                                 values=[8])
-    stim_act.append(act)
-
-stim_act = np.vstack(stim_act).T 
-
-
-# load Kang PBMC annotation
-sample_annot = pd.read_csv(project_dir + '/datasets/Kang_PBMC/Kang_PBMC_control_annot.csv')
+# load sample annotation
+sample_annot =  pd.read_csv(project_dir + '/datasets/Kang_PBMC/Kang_PBMC_control_annot.csv')
 cd4t_idx = sample_annot[sample_annot.celltype == 'CD4T'].index.to_numpy()
 
-
-# find genes that were not 0 in all muscle samples in dataset
+# extract dataset
 data = go.extract_dataset('Kang_PBMC_control',
-                        top_thresh=1000,
-                        bottom_thresh=30)
-cd4t_data = data[cd4t_idx,:]
-good_gene_ids = np.where(np.sum(cd4t_data, axis=0) != 0)[0]
+                            top_thresh=1000,
+                            bottom_thresh=30)
 
-# subset
-stim_act = pd.DataFrame(stim_act[cd4t_idx, good_gene_ids])
-stim_act.columns = np.array(onto_genes)[good_gene_ids]
+
+# subset to CD4T cells
+cd4t_data = data[cd4t_idx,:]
+
+# get genes whose expression is not 0 for all cells
+good_gene_ids = np.where(np.sum(data, axis=0) != 0)[0]
+good_genes = np.array(onto_genes)[good_gene_ids]
+
+# add subsetted dataset to Ontoobj
+go.add_dataset(dataset = cd4t_data,
+               description = 'CD4T_PBMC_control',
+               top_thresh=1000,
+               bottom_thresh=30)
+
+
+# perform systematic stimulation of good genes in CD4T cells and 
+stim_act = np.zeros((cd4t_data.shape[0],len(good_genes)))
+
+for i in range(len(good_genes)):   
+    print(good_genes[i])
+    act = go_model.perturbation(ontobj=go,
+                                 dataset='CD4T_PBMC_control',
+                                 genes=[good_genes[i]],
+                                 values=[8],
+                                 terms=['GO:0060337'])
+    stim_act[:,i] = act.copy().flatten()
+
+
+# convert to dataframe
+stim_act = pd.DataFrame(stim_act)
+stim_act.columns = np.array(good_genes)
 
 # save results
-stim_act.to_csv(project_dir + '/analysis/04_IFN_response/results/systematic_stimulation_PBMC_CD4T_IFN_activities.csv', index=False)
-
-
-act_frame_sub = act_frame.iloc[cd4t_idx,:]
+stim_act.to_csv(project_dir + '/03_analysis/04_IFN_response/results/systematic_stimulation_control_CD4T_IFN_activities.csv', index=False)
