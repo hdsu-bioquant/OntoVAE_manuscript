@@ -66,6 +66,6 @@ ko_act = pd.DataFrame(ko_act[muscle_idx, good_gene_ids])
 ko_act.columns = np.array(onto_genes)[good_gene_ids]
 
 # save results
-ko_act.to_csv(project_dir + '/analysis/02_GTEx_HPO/results/link_removal/systematic_knockout_GTEx_muscle_LGMD_activities_' + GENE + '_link_removed.csv', index=False)
+ko_act.to_csv(project_dir + '/03_analysis/03_LGMD/results/link_removal/systematic_knockout_GTEx_muscle_LGMD_activities_' + GENE + '_link_removed.csv', index=False)
 
 

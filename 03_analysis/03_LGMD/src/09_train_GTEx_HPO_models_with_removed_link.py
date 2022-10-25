@@ -54,4 +54,4 @@ muscle_idx = sample_annot[sample_annot.tissue == 'Muscle'].index.to_numpy()
 act = act[muscle_idx,:]
 
 # save LGMD activities
-np.save(project_dir + '/analysis/02_GTEx_HPO/results/link_removal/GTEx_muscle_LGMD_activities_' + GENE + '_link_removed.npy', act.flatten())
+np.save(project_dir + '/03_analysis/03_LGMD/results/link_removal/GTEx_muscle_LGMD_activities_' + GENE + '_link_removed.npy', act.flatten())
