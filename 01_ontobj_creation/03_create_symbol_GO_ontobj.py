@@ -12,7 +12,7 @@ go = Ontobj(description='GO_symbol')
 # initialize ontology
 go.initialize_dag(obo=project_dir + '/ontologies/GO/go-basic.obo',
                    gene_annot=project_dir + '/ontologies/GO/hgnc_goterm_mapping.txt',
-                   id = 'biological_process')
+                   filter_id = 'biological_process')
 
 # trim the ontology
 go.trim_dag(top_thresh=1000, 
@@ -25,6 +25,8 @@ go.create_masks(top_thresh=1000,
 # match recount3 GTEx dataset to the ontology
 go.match_dataset(expr_data = project_dir + '/datasets/Kang_PBMC/Kang_PBMC_control_expr.csv',
                   name='Kang_PBMC_control')
+go.match_dataset(expr_data = project_dir + '/datasets/Kang_PBMC/Kang_PBMC_expr.csv',
+                  name='Kang_PBMC')
 
 # save the ontobj
 with open(project_dir + '/ontobj/GO_symbol_ontobj.pickle', 'wb') as f:

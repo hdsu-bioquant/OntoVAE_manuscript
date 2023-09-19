@@ -60,6 +60,7 @@
 /03_analysis/01_pathway_activities/results
 /03_analysis/01_pathway_activities/results/GO_activity_correlations_based_on_neuronnum.json
 /03_analysis/01_pathway_activities/figures
+/03_analysis/01_pathway_activities/data
 
 # analysis - gene knockout
 
