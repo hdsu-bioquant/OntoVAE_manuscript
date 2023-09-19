@@ -16,7 +16,7 @@ diff_genes = diff_genes.iloc[:,0].tolist()
 
 
 
-# make Fig3c (Hockeystick plot)
+# make Fig4e (Hockeystick plot)
 
 res_plot = res.iloc[0:717,:]   # 717 is the rank from GSEA
 res_plot['log10p'] = -np.log10(res_plot['w_pval'])
